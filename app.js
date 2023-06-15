@@ -4,6 +4,7 @@ const app=new express();
 var morgan=require('morgan')
 require('dotenv').config();
 const PORT=process.env.PORT;
+const ConnectionString=process.env.ConnectionString;
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
@@ -15,7 +16,8 @@ app.use(express.static(path.join(__dirname+'/dist/FrontEnd')));
 // Task2: create mongoDB connection 
 const mongoose=require('mongoose');
 //mongoose.connect('mongodb://127.0.0.1:27017/moviesdb')
-mongoose.connect('mongodb+srv://LishaBishor:Lisha6873@cluster0.1qb18ll.mongodb.net/dbEmployee?retryWrites=true&w=majority')
+//mongoose.connect('mongodb+srv://LishaBishor:Lisha6873@cluster0.1qb18ll.mongodb.net/dbEmployee?retryWrites=true&w=majority')
+mongoose.connect(ConnectionString)
 .then(()=>{
     console.log('Connected to my local DB');
 })
